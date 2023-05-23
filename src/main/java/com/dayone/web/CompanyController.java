@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
-    
+
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autoComplete(@RequestParam String keyword){
         return null;
