@@ -4,6 +4,8 @@ import com.dayone.model.Company;
 import com.dayone.persist.entity.CompanyEntity;
 import com.dayone.service.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,8 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseEntity<?> searchCompany(){
-        List<CompanyEntity> allCompany = this.companyService.getAllCompany();
+    public ResponseEntity<?> searchCompany(Pageable pageable){
+        Page<CompanyEntity> allCompany = this.companyService.getAllCompany(pageable);
         return ResponseEntity.ok(allCompany);
     }
 
