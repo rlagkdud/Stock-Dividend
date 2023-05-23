@@ -32,6 +32,10 @@ public class CompanyService {
         return this.storeCompanyAndDividend(ticker);
     }
 
+    public List<CompanyEntity> getAllCompany(){
+        return this.companyRepository.findAll();
+    }
+
     private Company storeCompanyAndDividend(String ticker) {
         // ticker를 가지고 회사를 스크래핑
         Company company = this.yahooFinanceScraper.scrapCompanyByTicker(ticker);
