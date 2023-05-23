@@ -10,6 +10,7 @@ import com.dayone.scraper.Scraper;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.Trie;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -59,6 +60,16 @@ public class CompanyService {
         return company;
     }
 
+    // 자동완성 - LIKE 연산
+    public List<String> getCompanyNamesByKeyword(String keyword){
+        Pageable limit = PageRequest.of(0, 10); // 한번에 10개씩만 가져오도록
+        Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(keyword, limit);
+        return companyEntities.stream()
+                .map(e->e.getName())
+                .collect(Collectors.toList());
+    }
+
+    // 자동 완성 - Trie
     public void addAutocompleteKeyword(String keyword){
         this.trie.put(keyword, null);
     }
