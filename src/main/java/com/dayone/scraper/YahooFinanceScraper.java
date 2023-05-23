@@ -15,13 +15,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YahooFinanceScraper {
+public class YahooFinanceScraper implements Scraper {
     private static final String STATISTICS_URL = "https://finance.yahoo.com/quote/%s/history?period1=%d&period2=%d&interval=1mo";
     private static final String SUMMARY_URL = "https://finance.yahoo.com/quote/%s?p=%s";
     private static final long START_TIME = 86400; // 60 * 60 * 24 -> 1일
 
 
     // 회사의 배당금 정보 스크래핑 해오기
+    @Override
     public ScrapedResult scrap(Company company) {
 
         var scrapResult = new ScrapedResult();
@@ -69,6 +70,7 @@ public class YahooFinanceScraper {
     }
 
     // 회사 메타정보 스크래핑 해오기
+    @Override
     public Company scrapCompanyByTicker(String ticker){
 
         String url = String.format(SUMMARY_URL, ticker,ticker);
