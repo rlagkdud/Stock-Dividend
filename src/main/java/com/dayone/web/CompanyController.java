@@ -19,18 +19,18 @@ public class CompanyController {
 
     private final CompanyService companyService;
 
-    // Like 자동완성 사용
-    @GetMapping("/autocomplete")
-    public ResponseEntity<?> autoComplete(@RequestParam String keyword){
-        var result = companyService.getCompanyNamesByKeyword(keyword);
-        return ResponseEntity.ok(result);
-    }
-//    // Trie 자동완성 사용
+//    // Like 자동완성 사용
 //    @GetMapping("/autocomplete")
 //    public ResponseEntity<?> autoComplete(@RequestParam String keyword){
-//        var result = companyService.autocomplete(keyword);
+//        var result = companyService.getCompanyNamesByKeyword(keyword);
 //        return ResponseEntity.ok(result);
 //    }
+    // Trie 자동완성 사용
+    @GetMapping("/autocomplete")
+    public ResponseEntity<?> autoComplete(@RequestParam String keyword){
+        var result = companyService.autocomplete(keyword);
+        return ResponseEntity.ok(result);
+    }
 
     @GetMapping
     public ResponseEntity<?> searchCompany(Pageable pageable){
