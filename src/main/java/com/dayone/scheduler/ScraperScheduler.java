@@ -35,10 +35,7 @@ public class ScraperScheduler {
         for(var company : companies){
             log.info("scraping Scheduler is started -> "+company.getName()); // 어느 회사 정보가 스크래핑 되는지 로그 남김.
             ScrapedResult scrapedResult = yahooFinanceScraper.scrap(
-                    Company.builder()
-                            .name(company.getName())
-                            .ticker(company.getTicker())
-                            .build());
+                    new Company(company.getName(), company.getTicker()));
             // 3. 스크래핑한 배당금 정보 중 없는 정보는 데이터 베이스에 저장
             scrapedResult.getDividends().stream()
                     // 디비든 모델을 디비든 엔티티로 매핑
