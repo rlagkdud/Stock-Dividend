@@ -1,4 +1,4 @@
-package com.dayone.constants;
+package com.dayone.model.constants;
 
 public enum Month {
 

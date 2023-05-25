@@ -1,6 +1,6 @@
 package com.dayone.scraper;
 
-import com.dayone.constants.Month;
+import com.dayone.model.constants.Month;
 import com.dayone.model.Company;
 import com.dayone.model.Dividend;
 import com.dayone.model.ScrapedResult;
